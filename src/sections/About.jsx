@@ -1,112 +1,141 @@
-import { useRef } from "react";
-import Card from "../components/Card";
-import { Globe } from "../components/globe";
-import CopyEmailButton from "../components/CopyEmailButton";
-import { Frameworks } from "../components/FrameWorks";
-
 const About = () => {
-  const grid2Container = useRef();
+  const skills = [
+    "Graphic Design",
+    "Photography",
+    "Social Media Design",
+    "Visual Storytelling",
+    "Print Design",
+    "Brand Creatives",
+  ];
+
+  const experience = [
+    "Currently working with a digital marketing and social media agency",
+    "Experience in graphic design, photography, printing, and framing",
+    "Strong focus on clean visuals, composition, and creative storytelling",
+  ];
+
   return (
     <section className="c-space section-spacing" id="about">
-      <h2 className="text-heading">About Me</h2>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-6 md:auto-rows-[18rem] mt-12">
-        {/* Grid 1 */}
-        <div className="flex items-end grid-default-color grid-1">
-          <img
-            src="assets/g.png"
-            className="absolute scale-[1.75] -right-[5rem] -top-[1rem] md:scale-[3] md:left-50 md:inset-y-10 lg:scale-[2.5]"
-          />
-          {/* <div className="z-10">
-            <p className="headtext">Hi, I'm Ashiya</p>
-            <p className="subtext">
-              Over the last 4 years, I developed my Graphic design and ba dev
-              skills to deliver dynamic and software and web applications.
-            </p>
-          </div> */}
-          <div className="absolute inset-x-0 pointer-evets-none -bottom-4 h-1/2 sm:h-1/3 bg-gradient-to-t from-indigo" />
-        </div>
-        {/* Grid 2 */}
-        <div className="grid-default-color grid-2">
-          <div
-            ref={grid2Container}
-            className="flex items-center justify-center w-full h-full"
-          >
-            <p className="flex items-end text-5xl text-gray-500">
-              {/* CODE IS CRAFT */}
-            </p>
-            <Card
-              style={{ rotate: "75deg", top: "30%", left: "20%" }}
-              // text="GRASP"
-              containerRef={grid2Container}
-            />
-            <Card
-              style={{ rotate: "-30deg", top: "60%", left: "45%" }}
-              // text="SOLID"
-              containerRef={grid2Container}
-            />
-            <Card
-              style={{ rotate: "90deg", bottom: "30%", left: "70%" }}
-              // text="Design Patterns"
-              containerRef={grid2Container}
-            />
-            <Card
-              style={{ rotate: "-45deg", top: "55%", left: "0%" }}
-              // text="Design Principles"
-              containerRef={grid2Container}
-            />
-            <Card
-              style={{ rotate: "20deg", top: "10%", left: "38%" }}
-              // text="SRP"
-              containerRef={grid2Container}
-            />
-            <Card
-              style={{ rotate: "30deg", top: "70%", left: "70%" }}
-              // image="assets/logos/csharp-pink.png"
-              containerRef={grid2Container}
-            />
-            <Card
-              style={{ rotate: "-45deg", top: "70%", left: "25%" }}
-              // image="assets/logos/dotnet-pink.png"
-              containerRef={grid2Container}
-            />
-            <Card
-              style={{ rotate: "-45deg", top: "5%", left: "10%" }}
-              // image="assets/logos/blazor-pink.png"
-              containerRef={grid2Container}
-            />
+      <div className="mb-12">
+        <p className="mb-3 text-sm font-medium tracking-[0.35em] text-white/50 uppercase">
+          About
+        </p>
+        <h2 className="text-heading text-white">About Me</h2>
+      </div>
+
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16 lg:items-stretch">
+        {/* Left Sticky Image Section */}
+        <div className="lg:col-span-4 lg:self-stretch">
+          <div className="w-full max-w-[280px] sm:max-w-[320px] lg:sticky lg:top-28 lg:max-w-[340px]">
+            <div className="overflow-hidden rounded-3xl border border-white/10">
+              <img
+                src="/assets/ashi_profile.png"
+                alt="Profile"
+                className="w-full aspect-[4/5] object-cover"
+              />
+            </div>
+
+            <div className="mt-5">
+              <h3 className="text-xl font-semibold leading-snug text-white">
+                Graphic Designer & Photographer
+              </h3>
+
+              <p className="mt-2 text-sm leading-6 text-white/60">
+                Visual creator based in Sri Lanka, focused on design,
+                photography, and meaningful creative communication.
+              </p>
+            </div>
           </div>
         </div>
-        {/* Grid 3 */}
-        <div className="grid-black-color grid-3">
-          <div className="z-10 w-[50%]">
-            <p className="headtext">Time Zone</p>
-            <p className="subtext">
-              I'm based in Sri Lanka, and open to remote work worldwide
+
+        {/* Right About Section */}
+        <div className="lg:col-span-8">
+          <div className="max-w-4xl">
+            <p className="mb-4 text-sm font-medium tracking-[0.35em] text-white/50 uppercase">
+              Creative Profile
             </p>
-          </div>
-          <figure className="absolute left-[30%] top-[10%]">
-            <Globe />
-          </figure>
-        </div>
-        {/* Grid 4 */}
-        <div className="grid-special-color grid-4">
-          <div className="flex flex-col items-center justify-center gap-4 size-full">
-            <p className="text-center headtext">
-              Do you want to start a project together?
+
+            <h3 className="text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-5xl">
+              I create clean, purposeful visuals through graphic design,
+              photography, and storytelling.
+            </h3>
+
+            <p className="mt-6 text-base leading-8 text-white/75 sm:text-lg">
+              I am a dedicated Graphic Designer and Photographer with practical
+              experience in digital media, social media content, print design,
+              photography, and visual storytelling. My work focuses on creating
+              clear, modern, and impactful visuals that help brands communicate
+              with confidence.
             </p>
-            <CopyEmailButton />
-          </div>
-        </div>
-        {/* Grid 5 */}
-        <div className="grid-default-color grid-5">
-          <div className="z-10 w-[50%]">
-            <p className="headText">Tech Stack</p>
-            <p className="subtext">
-             I’m a graphic designer skilled in a variety of tools and techniques to create clean, impactful, and purpose-driven designs across digital and print media.
+
+            <p className="mt-4 text-base leading-8 text-white/75 sm:text-lg">
+              With experience across digital marketing, design studios,
+              printing, framing, and photography, I bring both creative thinking
+              and hands-on production knowledge into every project.
             </p>
-          </div>
-          <div className="absolute inset-y-0 md:inset-y-9 w-full h-full start-[50%] md:scale-125">
-            <Frameworks />
+
+            {/* Experience */}
+            <div className="mt-10">
+              <p className="mb-5 text-sm font-medium tracking-[0.3em] text-white/50 uppercase">
+                Experience
+              </p>
+
+              <div className="space-y-5">
+                {experience.map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex gap-4 border-b border-white/10 pb-5 last:border-b-0"
+                  >
+                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-white" />
+                    <p className="text-base leading-7 text-white/75">
+                      {item}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Skills */}
+            <div className="mt-10">
+              <p className="mb-5 text-sm font-medium tracking-[0.3em] text-white/50 uppercase">
+                Core Skills
+              </p>
+
+              <div className="flex flex-wrap gap-3">
+                {skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white/80"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Details */}
+            <div className="mt-12 grid grid-cols-1 gap-8 border-t border-white/10 pt-8 sm:grid-cols-3">
+              <div>
+                <p className="text-2xl font-semibold text-white">4+</p>
+                <p className="mt-2 text-sm leading-6 text-white/60">
+                  Years of creative experience
+                </p>
+              </div>
+
+              <div>
+                <p className="text-2xl font-semibold text-white">Digital</p>
+                <p className="mt-2 text-sm leading-6 text-white/60">
+                  Social media and marketing design
+                </p>
+              </div>
+
+              <div>
+                <p className="text-2xl font-semibold text-white">Print</p>
+                <p className="mt-2 text-sm leading-6 text-white/60">
+                  Print design and production knowledge
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
