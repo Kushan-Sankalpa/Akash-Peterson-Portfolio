@@ -27,7 +27,7 @@ const secondRow = clientLogos.slice(Math.ceil(clientLogos.length / 2));
 
 const LogoCard = ({ image, name }) => {
   return (
-    <figure className="flex h-28 w-56 cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-white p-5 shadow-lg transition hover:-translate-y-1 sm:h-32 sm:w-64 sm:p-6">
+    <figure className="flex h-20 w-40 cursor-pointer items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-white p-3 shadow-lg transition hover:-translate-y-1 sm:h-24 sm:w-48 sm:rounded-xl sm:p-4 md:h-32 md:w-64 md:p-6">
       <img
         className="h-full w-full object-contain"
         src={image}
