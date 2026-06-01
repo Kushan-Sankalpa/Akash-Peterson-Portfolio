@@ -2,21 +2,23 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import HeroText from "../components/HeroText";
 import ParallaxBackground from "../components/ParallaxBackground";
 
+/* eslint-disable react/prop-types */
+
 const HeroCanvas = lazy(() => import("../components/HeroCanvas"));
 
-const Hero = () => {
+const Hero = ({ onSceneProgress, onSceneReady }) => {
   const [showCanvas, setShowCanvas] = useState(false);
 
   useEffect(() => {
-    const show = () => setShowCanvas(true);
+    let secondFrameId;
+    const firstFrameId = window.requestAnimationFrame(() => {
+      secondFrameId = window.requestAnimationFrame(() => setShowCanvas(true));
+    });
 
-    if ("requestIdleCallback" in window) {
-      const idleId = window.requestIdleCallback(show, { timeout: 1000 });
-      return () => window.cancelIdleCallback(idleId);
-    }
-
-    const timeoutId = window.setTimeout(show, 250);
-    return () => window.clearTimeout(timeoutId);
+    return () => {
+      window.cancelAnimationFrame(firstFrameId);
+      if (secondFrameId) window.cancelAnimationFrame(secondFrameId);
+    };
   }, []);
 
   return (
@@ -29,7 +31,10 @@ const Hero = () => {
       >
         {showCanvas && (
           <Suspense fallback={null}>
-            <HeroCanvas />
+            <HeroCanvas
+              onProgress={onSceneProgress}
+              onReady={onSceneReady}
+            />
           </Suspense>
         )}
       </figure>

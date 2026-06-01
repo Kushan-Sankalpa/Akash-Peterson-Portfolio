@@ -55,6 +55,99 @@ body {
   overflow-x: hidden;
 }
 
+.loading-cover {
+  opacity: 1;
+  transition:
+    opacity 800ms ease,
+    visibility 800ms ease;
+}
+
+.loading-cover--leaving {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-cover-grid {
+  background-image:
+    linear-gradient(rgba(122, 87, 219, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(122, 87, 219, 0.1) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(circle at center, black 0%, transparent 72%);
+}
+
+.loading-cover-glow {
+  animation: loading-glow-pulse 2.8s ease-in-out infinite;
+}
+
+.loading-orbit {
+  animation: loading-orbit 8s linear infinite;
+  box-shadow: 0 0 35px rgba(122, 87, 219, 0.14);
+}
+
+.loading-orbit--reverse {
+  animation-direction: reverse;
+  animation-duration: 12s;
+}
+
+.loading-pulse {
+  animation: loading-pulse 2.2s ease-in-out infinite;
+}
+
+.loading-progress {
+  transition: width 350ms ease;
+  animation: loading-progress-glow 1.6s ease-in-out infinite;
+}
+
+@keyframes loading-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes loading-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+}
+
+@keyframes loading-progress-glow {
+  0%,
+  100% {
+    filter: brightness(0.9);
+  }
+  50% {
+    filter: brightness(1.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-cover-glow,
+  .loading-orbit,
+  .loading-pulse,
+  .loading-progress {
+    animation: none;
+  }
+}
+
 .c-space {
   @apply sm:px-10 px-5 lg:px-15;
 }
