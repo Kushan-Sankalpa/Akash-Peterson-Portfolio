@@ -15,13 +15,19 @@ const getInitials = (title) =>
     .join("")
     .slice(0, 3);
 
-const LogoPanel = ({ project }) => (
-  <div className="flex h-32 items-center justify-center overflow-hidden bg-white p-5 sm:h-36 sm:p-6">
-    {project.logo ? (
+const VisualPanel = ({ project, index }) => {
+  const image = project.preview || project.logo;
+  const isProjectPreview = Boolean(project.preview);
+
+  return (
+    <div className="relative flex aspect-[16/10] min-h-44 items-center justify-center overflow-hidden bg-white sm:aspect-[4/3]">
+      {image ? (
       <img
-        src={project.logo}
-        alt={`${project.title} logo`}
-        className="h-full w-full object-contain"
+          src={image}
+          alt={`${project.title} ${isProjectPreview ? "project preview" : "logo"}`}
+          className={`h-full w-full transition duration-500 group-hover:scale-105 ${
+            isProjectPreview ? "object-cover" : "object-contain p-7 sm:p-8"
+          }`}
         loading="lazy"
         decoding="async"
       />
@@ -30,12 +36,20 @@ const LogoPanel = ({ project }) => (
         {getInitials(project.title)}
       </div>
     )}
-  </div>
-);
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/55 via-transparent to-transparent" />
+      <span className="absolute right-4 top-4 rounded-full border border-white/20 bg-black/30 px-3 py-1 text-[0.65rem] tracking-[0.18em] text-white/80 uppercase backdrop-blur">
+        {String(index + 1).padStart(2, "0")}
+      </span>
+      <p className="absolute bottom-4 left-4 text-[0.65rem] tracking-[0.2em] text-white/70 uppercase">
+        {isProjectPreview ? "Project preview" : "Brand collection"}
+      </p>
+    </div>
+  );
+};
 
 const CardContent = ({ project, index }) => (
   <>
-    <LogoPanel project={project} />
+    <VisualPanel project={project} index={index} />
     <div className="p-4 sm:p-5">
       <div className="flex items-start justify-between gap-3">
         <div>
@@ -46,9 +60,6 @@ const CardContent = ({ project, index }) => (
             {project.title}
           </h3>
         </div>
-        <span className="text-xs tracking-[0.18em] text-white/30">
-          {String(index + 1).padStart(2, "0")}
-        </span>
       </div>
       <p className="mt-4 text-xs tracking-[0.18em] text-lavender uppercase">
         {project.gallery ? "View case study ->" : "Open Drive folder ->"}

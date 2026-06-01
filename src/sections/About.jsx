@@ -15,12 +15,6 @@ const About = () => {
     { label: "Status", value: "Open to opportunities" },
   ];
 
-  const highlights = [
-    { k: "Since 2018", v: "Hands-on creative industry experience" },
-    { k: "Digital", v: "Social, marketing & content design" },
-    { k: "Print", v: "Production, framing & finishing" },
-  ];
-
   return (
     <section className="c-space section-spacing" id="about">
       <div className="mb-10 flex items-end justify-between border-b border-white/10 pb-5 sm:mb-16 sm:pb-6">
@@ -37,7 +31,7 @@ const About = () => {
 
       <div className="grid grid-cols-1 gap-10 sm:gap-12 lg:grid-cols-12 lg:items-stretch lg:gap-20">
         <aside className="lg:col-span-4 lg:self-stretch">
-          <div className="mx-auto w-full max-w-[280px] sm:mx-0 sm:max-w-[340px] lg:sticky lg:top-28">
+          <div className="w-full max-w-[280px] sm:max-w-[340px] lg:sticky lg:top-28">
             <div className="relative overflow-hidden rounded-2xl border border-white/10">
               <img
                 src="/assets/ashi_profile.png"
@@ -117,36 +111,6 @@ const About = () => {
               </ul>
             </div>
 
-            <div className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5 sm:mt-16 sm:grid-cols-3">
-              {highlights.map((item) => (
-                <div key={item.k} className="bg-black/50 p-5 sm:p-6">
-                  <p className="text-3xl font-medium tracking-tight text-white">
-                    {item.k}
-                  </p>
-                  <p className="mt-2 text-sm leading-6 text-white/55">
-                    {item.v}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-10 flex flex-col items-start gap-5 border-t border-white/10 pt-7 sm:mt-14 sm:flex-row sm:flex-wrap sm:items-center sm:gap-6 sm:pt-8">
-              <a
-                href="#contact"
-                className="group inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/[0.03] px-5 py-2.5 text-sm font-medium text-white transition hover:border-white/40 hover:bg-white/[0.08]"
-              >
-                Let&apos;s work together
-                <span className="transition-transform group-hover:translate-x-1">
-                  -&gt;
-                </span>
-              </a>
-              <a
-                href="#work"
-                className="text-sm font-medium text-white/60 underline-offset-4 transition hover:text-white hover:underline"
-              >
-                View selected work
-              </a>
-            </div>
           </div>
         </div>
       </div>

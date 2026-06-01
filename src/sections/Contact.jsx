@@ -74,7 +74,7 @@ const Contact = () => {
       </div>
 
       <div className="mt-8 grid grid-cols-1 gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:gap-8">
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1">
+        <div className="order-2 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:order-1 lg:grid-cols-1">
           {contactOptions.map((option) => (
             <a
               key={option.label}
@@ -97,7 +97,7 @@ const Contact = () => {
         </div>
 
         <form
-          className="rounded-2xl border border-white/10 bg-primary/80 p-5 sm:p-7"
+          className="order-1 rounded-2xl border border-white/10 bg-primary/80 p-5 sm:p-7 lg:order-2"
           onSubmit={handleSubmit}
         >
           <h3 className="text-xl font-medium text-white">Send an inquiry</h3>

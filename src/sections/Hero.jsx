@@ -1,15 +1,24 @@
-import { Canvas, useFrame } from "@react-three/fiber";
+import { lazy, Suspense, useEffect, useState } from "react";
 import HeroText from "../components/HeroText";
 import ParallaxBackground from "../components/ParallaxBackground";
-import { Astronaut } from "../components/Astronaut";
-import { Float } from "@react-three/drei";
-import { useMediaQuery } from "react-responsive";
-import { easing } from "maath";
-import { Suspense } from "react";
-import Loader from "../components/Loader";
+
+const HeroCanvas = lazy(() => import("../components/HeroCanvas"));
 
 const Hero = () => {
-  const isMobile = useMediaQuery({ maxWidth: 853 });
+  const [showCanvas, setShowCanvas] = useState(false);
+
+  useEffect(() => {
+    const show = () => setShowCanvas(true);
+
+    if ("requestIdleCallback" in window) {
+      const idleId = window.requestIdleCallback(show, { timeout: 1000 });
+      return () => window.cancelIdleCallback(idleId);
+    }
+
+    const timeoutId = window.setTimeout(show, 250);
+    return () => window.clearTimeout(timeoutId);
+  }, []);
+
   return (
     <section className="flex min-h-screen items-start justify-center overflow-hidden c-space md:justify-start">
       <HeroText />
@@ -18,31 +27,14 @@ const Hero = () => {
         className="absolute inset-0"
         style={{ width: "100vw", height: "100vh" }}
       >
-        <Canvas camera={{ position: [0, 1, 3] }}>
-          <Suspense fallback={<Loader />}>
-            <Float>
-              <Astronaut
-                scale={isMobile && 0.23}
-                position={isMobile && [0, -1.5, 0]}
-              />
-            </Float>
-            <Rig />
+        {showCanvas && (
+          <Suspense fallback={null}>
+            <HeroCanvas />
           </Suspense>
-        </Canvas>
+        )}
       </figure>
     </section>
   );
 };
-
-function Rig() {
-  return useFrame((state, delta) => {
-    easing.damp3(
-      state.camera.position,
-      [state.mouse.x / 10, 1 + state.mouse.y / 10, 3],
-      0.5,
-      delta
-    );
-  });
-}
 
 export default Hero;

@@ -6,20 +6,32 @@ const Footer = () => {
       <div className="mb-5 h-[1px] w-full bg-gradient-to-r from-transparent via-neutral-700 to-transparent" />
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <p className="font-medium text-white/80">Akash Peterson</p>
-        <div className="flex flex-wrap gap-x-5 gap-y-2">
+        <div className="flex items-center gap-3">
           <a
             href={`mailto:${contactDetails.email}`}
-            className="transition hover:text-white"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] transition hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/[0.08]"
+            aria-label="Email Akash Peterson"
+            title="Email Akash Peterson"
           >
-            {contactDetails.email}
+            <img
+              src="/assets/socials/email.svg"
+              alt=""
+              className="h-5 w-5"
+            />
           </a>
           <a
             href={contactDetails.whatsapp}
             target="_blank"
             rel="noreferrer"
-            className="transition hover:text-white"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] transition hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/[0.08]"
+            aria-label="Message Akash Peterson on WhatsApp"
+            title="Message Akash Peterson on WhatsApp"
           >
-            WhatsApp
+            <img
+              src="/assets/socials/whatsApp.svg"
+              alt=""
+              className="h-5 w-5"
+            />
           </a>
         </div>
         <p>Copyright {new Date().getFullYear()} Akash Peterson.</p>
