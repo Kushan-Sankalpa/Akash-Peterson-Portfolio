@@ -1,22 +1,30 @@
-import { mySocials } from "../constants";
+import { contactDetails } from "../constants/profile";
+
 const Footer = () => {
   return (
-    <section className="flex flex-wrap items-center justify-between gap-5 pb-3 text-sm text-neutral-400 c-space">
-      <div className="mb-4 bg-gradient-to-r from-transparent via-neutral-700 to-transparent h-[1px] w-full" />
-      <div className="flex gap-2">
-        <p>Terms & Conditions</p>
-        <p>|</p>
-        <p>Privacy Policy</p>
-      </div>
-      <div className="flex gap-3">
-        {mySocials.map((social, index) => (
-          <a href={social.href} key={index}>
-            <img src={social.icon} className="w-5 h-5" alt={social.name} />
+    <footer className="c-space pb-5 pt-12 text-sm text-neutral-400">
+      <div className="mb-5 h-[1px] w-full bg-gradient-to-r from-transparent via-neutral-700 to-transparent" />
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <p className="font-medium text-white/80">Akash Peterson</p>
+        <div className="flex flex-wrap gap-x-5 gap-y-2">
+          <a
+            href={`mailto:${contactDetails.email}`}
+            className="transition hover:text-white"
+          >
+            {contactDetails.email}
           </a>
-        ))}
+          <a
+            href={contactDetails.whatsapp}
+            target="_blank"
+            rel="noreferrer"
+            className="transition hover:text-white"
+          >
+            WhatsApp
+          </a>
+        </div>
+        <p>Copyright {new Date().getFullYear()} Akash Peterson.</p>
       </div>
-      <p>© 2025 Ali. All rights reserved.</p>
-    </section>
+    </footer>
   );
 };
 

@@ -1,76 +1,112 @@
 import { useState } from "react";
-import emailjs from "@emailjs/browser";
-import Alert from "../components/Alert";
 import { Particles } from "../components/Particles";
+import { contactDetails } from "../constants/profile";
+
+const contactOptions = [
+  {
+    label: "Email",
+    value: contactDetails.email,
+    href: `mailto:${contactDetails.email}`,
+  },
+  {
+    label: "WhatsApp",
+    value: contactDetails.primaryPhoneDisplay,
+    href: contactDetails.whatsapp,
+  },
+  {
+    label: "Primary Call",
+    value: contactDetails.primaryPhoneDisplay,
+    href: `tel:${contactDetails.primaryPhone}`,
+  },
+  {
+    label: "Alternate Call",
+    value: contactDetails.secondaryPhoneDisplay,
+    href: `tel:${contactDetails.secondaryPhone}`,
+  },
+  {
+    label: "Based In",
+    value: contactDetails.location,
+    href: "https://www.google.com/maps/search/?api=1&query=Battaramulla%2C%20Sri%20Lanka",
+  },
+];
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
-  const [isLoading, setIsLoading] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertType, setAlertType] = useState("success");
-  const [alertMessage, setAlertMessage] = useState("");
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-  const showAlertMessage = (type, message) => {
-    setAlertType(type);
-    setAlertMessage(message);
-    setShowAlert(true);
-    setTimeout(() => {
-      setShowAlert(false);
-    }, 5000);
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
 
-    try {
-      console.log("From submitted:", formData);
-      await emailjs.send(
-        "service_79b0nyj",
-        "template_17us8im",
-        {
-          from_name: formData.name,
-          to_name: "Ali",
-          from_email: formData.email,
-          to_email: "AliSanatiDev@gmail.com",
-          message: formData.message,
-        },
-        "pn-Bw_mS1_QQdofuV"
-      );
-      setIsLoading(false);
-      setFormData({ name: "", email: "", message: "" });
-      showAlertMessage("success", "You message has been sent!");
-    } catch (error) {
-      setIsLoading(false);
-      console.log(error);
-      showAlertMessage("danger", "Somthing went wrong!");
-    }
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const subject = encodeURIComponent(`Portfolio inquiry from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+    );
+
+    window.location.href = `mailto:${contactDetails.email}?subject=${subject}&body=${body}`;
+  };
+
   return (
-    <section className="relative flex items-center c-space section-spacing">
+    <section className="relative c-space section-spacing" id="contact">
       <Particles
         className="absolute inset-0 -z-50"
         quantity={100}
         ease={80}
-        color={"#ffffff"}
+        color="#ffffff"
         refresh
       />
-      {showAlert && <Alert type={alertType} text={alertMessage} />}
-      <div className="flex flex-col items-center justify-center max-w-md p-5 mx-auto border border-white/10 rounded-2xl bg-primary">
-        <div className="flex flex-col items-start w-full gap-5 mb-10">
-          <h2 className="text-heading">Let's Talk</h2>
-          <p className="font-normal text-neutral-400">
-            Whether you're loking to build a new website, improve your existing
-            platform, or bring a unique project to life, I'm here to help
-          </p>
+
+      <div className="border-b border-white/10 pb-6">
+        <p className="mb-3 text-xs font-medium tracking-[0.4em] text-white/40 uppercase">
+          04 / Contact
+        </p>
+        <h2 className="text-heading text-white">Let&apos;s Work Together</h2>
+        <p className="mt-3 max-w-2xl text-sm leading-6 text-white/55 sm:text-base">
+          For graphic design, photography or creative collaboration, reach out
+          directly or prepare an email below.
+        </p>
+      </div>
+
+      <div className="mt-8 grid grid-cols-1 gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:gap-8">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1">
+          {contactOptions.map((option) => (
+            <a
+              key={option.label}
+              href={option.href}
+              target={option.href.startsWith("http") ? "_blank" : undefined}
+              rel={option.href.startsWith("http") ? "noreferrer" : undefined}
+              className="group rounded-2xl border border-white/10 bg-white/[0.025] p-5 transition hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/[0.055]"
+            >
+              <p className="text-xs tracking-[0.25em] text-white/40 uppercase">
+                {option.label}
+              </p>
+              <p className="mt-2 break-words text-base font-medium text-white sm:text-lg">
+                {option.value}
+              </p>
+              <p className="mt-4 text-xs tracking-[0.18em] text-lavender uppercase">
+                Open -&gt;
+              </p>
+            </a>
+          ))}
         </div>
-        <form className="w-full" onSubmit={handleSubmit}>
-          <div className="mb-5">
-            <label htmlFor="name" className="feild-label">
+
+        <form
+          className="rounded-2xl border border-white/10 bg-primary/80 p-5 sm:p-7"
+          onSubmit={handleSubmit}
+        >
+          <h3 className="text-xl font-medium text-white">Send an inquiry</h3>
+          <p className="mt-2 text-sm leading-6 text-white/55">
+            Submitting opens your email app with the message prepared for Akash.
+          </p>
+
+          <div className="mt-6">
+            <label htmlFor="name" className="field-label">
               Full Name
             </label>
             <input
@@ -78,15 +114,16 @@ const Contact = () => {
               name="name"
               type="text"
               className="field-input field-input-focus"
-              placeholder="John Doe"
+              placeholder="Your name"
               autoComplete="name"
               value={formData.name}
               onChange={handleChange}
               required
             />
           </div>
-          <div className="mb-5">
-            <label htmlFor="email" className="feild-label">
+
+          <div className="mt-5">
+            <label htmlFor="email" className="field-label">
               Email
             </label>
             <input
@@ -94,35 +131,35 @@ const Contact = () => {
               name="email"
               type="email"
               className="field-input field-input-focus"
-              placeholder="JohnDoe@email.com"
+              placeholder="you@example.com"
               autoComplete="email"
               value={formData.email}
               onChange={handleChange}
               required
             />
           </div>
-          <div className="mb-5">
-            <label htmlFor="message" className="feild-label">
+
+          <div className="mt-5">
+            <label htmlFor="message" className="field-label">
               Message
             </label>
             <textarea
               id="message"
               name="message"
-              type="text"
-              rows="4"
+              rows="5"
               className="field-input field-input-focus"
-              placeholder="Share your thoughts..."
-              autoComplete="message"
+              placeholder="Tell Akash about your project..."
               value={formData.message}
               onChange={handleChange}
               required
             />
           </div>
+
           <button
             type="submit"
-            className="w-full px-1 py-3 text-lg text-center rounded-md cursor-pointer bg-radial from-lavender to-royal hover-animation"
+            className="mt-6 w-full cursor-pointer rounded-md bg-radial from-lavender to-royal px-4 py-3 text-base font-medium text-white transition hover:-translate-y-0.5"
           >
-            {!isLoading ? "Send" : "Sending..."}
+            Prepare Email
           </button>
         </form>
       </div>

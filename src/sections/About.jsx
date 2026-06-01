@@ -16,7 +16,7 @@ const About = () => {
   ];
 
   const highlights = [
-    { k: "04+", v: "Years of creative practice" },
+    { k: "Since 2018", v: "Hands-on creative industry experience" },
     { k: "Digital", v: "Social, marketing & content design" },
     { k: "Print", v: "Production, framing & finishing" },
   ];
@@ -55,8 +55,8 @@ const About = () => {
                 Graphic Designer & Photographer
               </h3>
               <p className="text-sm leading-6 text-white/55">
-                Sri Lanka / working with a digital marketing & social media
-                agency.
+                Sri Lanka / currently working with Hashtag Digital Marketing
+                Agency.
               </p>
             </div>
           </div>
