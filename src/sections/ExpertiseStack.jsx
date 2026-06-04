@@ -64,8 +64,15 @@ const expertiseCards = [
 ];
 
 const ExpertiseStack = () => {
+  const handleSkip = () => {
+    document.getElementById("work")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   return (
-    <section className="c-space mt-20 md:mt-30" id="expertise">
+    <section className="relative c-space mt-20 md:mt-30" id="expertise">
       <div className="border-b border-white/10 pb-6">
         <p className="mb-3 text-xs font-medium tracking-[0.4em] text-white/40 uppercase">
           02 / Expertise
@@ -78,9 +85,18 @@ const ExpertiseStack = () => {
               and production-ready artwork.
             </p>
           </div>
-          <p className="text-xs tracking-[0.3em] text-white/35 uppercase">
-            Services / Stack
-          </p>
+          <div className="flex items-center gap-3">
+            <p className="hidden text-xs tracking-[0.3em] text-white/35 uppercase sm:block">
+              Services / Stack
+            </p>
+            <button
+              type="button"
+              onClick={handleSkip}
+              className="rounded-full border border-white/15 bg-white/[0.04] px-4 py-2 text-xs font-medium tracking-[0.18em] text-white/70 uppercase transition hover:border-white/35 hover:bg-white/[0.09] hover:text-white"
+            >
+              Skip to Work
+            </button>
+          </div>
         </div>
       </div>
 
@@ -94,22 +110,33 @@ const ExpertiseStack = () => {
               "--stack-card-tint": card.tint,
             }}
           >
-            <article className="relative grid h-full overflow-hidden rounded-[1.65rem] lg:grid-cols-[1.08fr_0.92fr]">
+            <article className="relative grid h-full overflow-hidden rounded-[2rem] bg-[#080a16] lg:grid-cols-[1.12fr_0.88fr]">
               <div
-                className="absolute inset-0 opacity-95"
+                className="absolute inset-0 opacity-80"
                 style={{ background: "var(--stack-card-surface)" }}
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,4,18,0.82),rgba(3,4,18,0.44),rgba(3,4,18,0.2))]" />
+              <div
+                className="absolute left-0 top-0 h-full w-1.5"
+                style={{ backgroundColor: "var(--stack-card-tint)" }}
               />
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/35 to-transparent" />
 
               <div className="relative z-10 flex h-full flex-col justify-between gap-5">
                 <div>
-                  <p className="text-[0.65rem] font-medium tracking-[0.28em] text-white/45 uppercase">
-                    {card.label}
-                  </p>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span
+                      className="h-2.5 w-2.5 rounded-full"
+                      style={{ backgroundColor: "var(--stack-card-tint)" }}
+                    />
+                    <p className="text-[0.65rem] font-medium tracking-[0.24em] text-white/50 uppercase">
+                      {card.label}
+                    </p>
+                  </div>
                   <h3 className="mt-4 max-w-xl text-3xl font-semibold leading-[1.02] text-white sm:text-4xl lg:text-5xl">
                     {card.title}
                   </h3>
-                  <p className="mt-4 max-w-xl text-sm leading-6 text-white/68 sm:text-base sm:leading-7">
+                  <p className="mt-4 max-w-xl text-sm leading-6 text-white/74 sm:text-base sm:leading-7">
                     {card.copy}
                   </p>
                 </div>
@@ -118,7 +145,7 @@ const ExpertiseStack = () => {
                   {card.tags.map((tag) => (
                     <li
                       key={tag}
-                      className="rounded-full border border-white/12 bg-white/[0.05] px-3 py-1.5 text-xs font-medium text-white/72 sm:px-4"
+                      className="rounded-full border border-white/14 bg-primary/35 px-3 py-1.5 text-xs font-medium text-white/78 backdrop-blur sm:px-4"
                     >
                       {tag}
                     </li>
@@ -127,14 +154,12 @@ const ExpertiseStack = () => {
               </div>
 
               <div className="relative z-10 mt-5 flex items-end justify-between gap-5 lg:mt-0 lg:flex-col lg:items-end">
-                <span className="text-[0.7rem] font-medium tracking-[0.35em] text-white/45 uppercase">
+                <span className="rounded-full border border-white/12 bg-white/[0.04] px-3 py-1 text-[0.7rem] font-medium tracking-[0.25em] text-white/58 uppercase">
                   {card.stat}
                 </span>
-                <div className="relative flex aspect-square w-28 items-center justify-center overflow-hidden rounded-[1.25rem] border border-white/12 bg-primary/45 shadow-[0_24px_70px_rgba(0,0,0,0.26)] sm:w-36 lg:w-44">
-                  <div
-                    className="absolute inset-4 rounded-[1rem] border"
-                    style={{ borderColor: "var(--stack-card-tint)" }}
-                  />
+                <div className="relative flex aspect-square w-28 items-center justify-center overflow-hidden rounded-[1.25rem] border border-white/14 bg-primary/55 shadow-[0_24px_70px_rgba(0,0,0,0.34)] backdrop-blur sm:w-36 lg:w-44">
+                  <div className="absolute inset-3 rounded-[1rem] border border-white/12" />
+                  <div className="absolute inset-6 rounded-[0.8rem] border border-dashed border-white/18" />
                   <div
                     className="absolute h-20 w-20 rounded-full blur-2xl sm:h-28 sm:w-28"
                     style={{ backgroundColor: "var(--stack-card-tint)" }}

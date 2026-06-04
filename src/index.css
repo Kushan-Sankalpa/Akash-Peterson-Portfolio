@@ -170,18 +170,18 @@ body {
   height: 100%;
   overflow-y: auto;
   overflow-x: visible;
-  overscroll-behavior: contain;
+  overscroll-behavior: auto;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   will-change: scroll-position;
-  scrollbar-color: rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.06);
+  scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
   scrollbar-width: thin;
 }
 
 .scroll-stack-inner {
-  padding: 20vh 5rem 50rem;
+  padding: 18vh clamp(0.25rem, 6vw, 5rem) clamp(16rem, 36vh, 22rem);
   min-height: 100vh;
 }
 
@@ -194,7 +194,7 @@ body {
   will-change: transform, filter;
   backface-visibility: hidden;
   transform-style: preserve-3d;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.32);
   height: 20rem;
   width: 100%;
   margin: 30px 0;
@@ -213,23 +213,22 @@ body {
 
 .expertise-scroll-shell {
   height: clamp(31rem, 72vh, 43rem);
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 1.5rem;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 36%),
-    #050611;
+  margin-inline: clamp(-1rem, -2vw, 0rem);
+  border-radius: 0;
+  background: transparent;
 }
 
 .expertise-stack-card {
   overflow: hidden;
-  background: var(--stack-card-surface);
-  border: 1px solid rgba(255, 255, 255, 0.11);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 45%),
+    var(--stack-card-surface);
+  border: 1px solid rgba(255, 255, 255, 0.16);
 }
 
 @media (max-width: 640px) {
   .scroll-stack-inner {
-    padding: 14vh 1rem 34rem;
+    padding: 13vh 0.75rem 18rem;
   }
 
   .scroll-stack-card {
@@ -240,7 +239,6 @@ body {
 
   .expertise-scroll-shell {
     height: 34rem;
-    border-radius: 1.25rem;
   }
 }
 
