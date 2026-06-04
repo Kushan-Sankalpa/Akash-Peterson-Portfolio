@@ -1,133 +1,225 @@
-export const dialogGallery = [
-  "/assets/Dialog/Biz Mobile-01_result.webp",
-  "/assets/Dialog/Bizpack Unlimited-01_result.webp",
-  "/assets/Dialog/Bizpack Unlimited-02_result.webp",
-  "/assets/Dialog/Dialog Matter Option 2_result.webp",
-  "/assets/Dialog/Google IO Post-with BG Design (1)_result.webp",
-  "/assets/Dialog/Logo Post_result.webp",
-  "/assets/Dialog/Option 2_result.webp",
-  "/assets/Dialog/Option 4_result.webp",
-  "/assets/Dialog/_2400b8f8-ffba-43ab-bf92-487eee9c598a_result.webp",
-];
+const driveProject = ({
+  id,
+  title,
+  type,
+  href,
+  previews = [],
+  logo,
+  accent,
+}) => ({
+  id,
+  title,
+  type,
+  href,
+  previews,
+  logo,
+  accent,
+  visualType: "gallery",
+  actionLabel: "View More",
+  actionHint: "Open Drive folder",
+});
+
+const pdfProject = ({
+  id,
+  title,
+  type,
+  href,
+  logo,
+  accent,
+  pdfLabel,
+}) => ({
+  id,
+  title,
+  type,
+  href,
+  logo,
+  accent,
+  visualType: "pdf",
+  actionLabel: "Open PDF",
+  actionHint: pdfLabel || "PDF presentation",
+});
 
 export const featuredProjects = [
-  {
+  driveProject({
     id: "dialog-axiata",
     title: "Dialog Axiata",
     type: "Campaign Design",
     logo: "/assets/Project_Logos/dialog.webp",
-    driveUrl:
-      "https://drive.google.com/drive/folders/1Y1PoymwCE0rCvwB1BaDyI3aROBxJQyrv",
-    gallery: dialogGallery,
-  },
-  {
+    href: "https://drive.google.com/drive/folders/1Y1PoymwCE0rCvwB1BaDyI3aROBxJQyrv",
+    previews: [
+      "/assets/Dialog/Logo Post_result.webp",
+      "/assets/Dialog/Google IO Post-with BG Design (1)_result.webp",
+    ],
+    accent: "from-red-500/25 via-fuchsia-500/10 to-transparent",
+  }),
+  driveProject({
     id: "cbl",
     title: "CBL",
     type: "Brand Creatives",
     logo: "/assets/Project_Logos/cbl.webp",
-    driveUrl:
-      "https://drive.google.com/drive/folders/1vHSEMJzKcrK0N43yMONXIGqxYl-0sJiB",
-  },
-  {
+    href: "https://drive.google.com/drive/folders/1vHSEMJzKcrK0N43yMONXIGqxYl-0sJiB",
+    previews: [
+      "/assets/CBL/Hazlenut mockup Classic_result.webp",
+      "/assets/CBL/Mint mockup Classic_result.webp",
+    ],
+    accent: "from-amber-400/25 via-orange-500/10 to-transparent",
+  }),
+  driveProject({
     id: "pan-asia-bank",
     title: "Pan Asia Bank",
     type: "Banking Creatives",
     logo: "/assets/Project_Logos/PABC.webp",
-    driveUrl:
-      "https://drive.google.com/drive/folders/1HTAD9Hv2I3XSqu6T45PugL0665-cZu76",
-  },
-  {
+    href: "https://drive.google.com/drive/folders/1HTAD9Hv2I3XSqu6T45PugL0665-cZu76",
+    previews: [
+      "/assets/PanAsiaBank/Pan Asia_A4 (2)-01_result.webp",
+      "/assets/PanAsiaBank/WhatsApp_Image_2023-03-16_at_15.52.24.jpeg_result.webp",
+    ],
+    accent: "from-emerald-400/20 via-cyan-500/10 to-transparent",
+  }),
+  driveProject({
     id: "dp-logistics",
     title: "DP Logistics",
     type: "Corporate Creatives",
     logo: "/assets/Project_Logos/dp_logistics.webp",
-    driveUrl:
-      "https://drive.google.com/drive/folders/1bA6eatX1pEauMQb4q26oIvmPPNsKuL1m",
-  },
-  {
+    href: "https://drive.google.com/drive/folders/1bA6eatX1pEauMQb4q26oIvmPPNsKuL1m",
+    previews: ["/assets/DPLogistics/DPL Invitation-01_result.webp"],
+    accent: "from-sky-400/20 via-blue-500/10 to-transparent",
+  }),
+  driveProject({
     id: "dfcc-bank",
     title: "DFCC Bank",
     type: "Banking Creatives",
     logo: "/assets/Project_Logos/DFCC.webp",
-    driveUrl:
-      "https://drive.google.com/drive/folders/17iqZ4dm7z1NB7fqlGKQqoY-CM-2-1LrU",
-  },
-  {
+    href: "https://drive.google.com/drive/folders/17iqZ4dm7z1NB7fqlGKQqoY-CM-2-1LrU",
+    previews: [
+      "/assets/DFCC/Quater Page-01_result.webp",
+      "/assets/DFCC/Press Ad_result.webp",
+    ],
+    accent: "from-lime-400/20 via-emerald-500/10 to-transparent",
+  }),
+  driveProject({
     id: "ministry-of-health",
     title: "Ministry of Health",
     type: "Public Communication",
     logo: "/assets/Project_Logos/moh.webp",
-    driveUrl:
-      "https://drive.google.com/drive/folders/1WfsvYWstSpm_NaC4nCOWlW2SXkaigTRg",
-  },
-  {
+    href: "https://drive.google.com/drive/folders/1WfsvYWstSpm_NaC4nCOWlW2SXkaigTRg",
+    previews: [
+      "/assets/MOH/Bacteria Lurk Unseen_result.webp",
+      "/assets/MOH/Healthy Future-01-01_result.webp",
+    ],
+    accent: "from-cyan-400/20 via-teal-500/10 to-transparent",
+  }),
+  driveProject({
     id: "nations-trust-bank",
     title: "Nations Trust Bank",
     type: "Banking Creatives",
     logo: "/assets/Project_Logos/Nations_Trust_Bank_logo.webp",
-    driveUrl:
-      "https://drive.google.com/drive/folders/1C6owKARD0FCd3lU0U2B2yFZ6xtui4HW5",
-  },
-  {
+    href: "https://drive.google.com/drive/folders/1C6owKARD0FCd3lU0U2B2yFZ6xtui4HW5",
+    previews: [
+      "/assets/NTB/Gourmet Galle Launch Post_result.webp",
+      "/assets/NTB/Launch Post GINI-02_result.webp",
+    ],
+    accent: "from-violet-400/20 via-royal/20 to-transparent",
+  }),
+  driveProject({
     id: "union-assurance",
     title: "Union Assurance",
     type: "Insurance Creatives",
     logo: "/assets/Project_Logos/Union_Assurance_logo.webp",
-    driveUrl:
-      "https://drive.google.com/drive/folders/1TvK9NCJEvjxDBTTNKVESxxoeA5oanBcZ",
-  },
+    href: "https://drive.google.com/drive/folders/1TvK9NCJEvjxDBTTNKVESxxoeA5oanBcZ",
+    previews: [
+      "/assets/UnionAssurance/Now Open-01_result.webp",
+      "/assets/UnionAssurance/UNISHIP Story with Man_result.webp",
+    ],
+    accent: "from-rose-400/20 via-red-500/10 to-transparent",
+  }),
 ];
 
 export const additionalProjects = [
-  {
+  driveProject({
     id: "sedr",
     title: "SEDR",
     type: "Campaign Creatives",
-    driveUrl:
-      "https://drive.google.com/drive/folders/1LIbYqX288sGN8dgIul9MbUgt-LtNCvt4",
-  },
-  {
+    href: "https://drive.google.com/drive/folders/1LIbYqX288sGN8dgIul9MbUgt-LtNCvt4",
+    previews: [
+      "/assets/SEDR/3_result.webp",
+      "/assets/SEDR/4_result.webp",
+    ],
+    accent: "from-amber-300/20 via-orange-500/10 to-transparent",
+  }),
+  driveProject({
     id: "pil",
     title: "PIL",
     type: "Corporate Creatives",
     logo: "/assets/Project_Logos/pil.webp",
-    driveUrl:
-      "https://drive.google.com/drive/folders/1Y3qQvRvXNX4BlKnKXOAa8uuJNDEwu3vE",
-  },
-  {
+    href: "https://drive.google.com/drive/folders/1Y3qQvRvXNX4BlKnKXOAa8uuJNDEwu3vE",
+    previews: [
+      "/assets/PIL/Sinhala & Tamil New Year-01_result.webp",
+      "/assets/PIL/New Year-01_result.webp",
+    ],
+    accent: "from-fuchsia-400/20 via-pink-500/10 to-transparent",
+  }),
+  driveProject({
     id: "ncinga",
     title: "NCINGA",
     type: "Technology Creatives",
     logo: "/assets/Project_Logos/ncinga.webp",
-    driveUrl:
-      "https://drive.google.com/drive/folders/1UC8sZBUE9MftISboLMY2Loe6d9yqikKE",
-  },
-  {
+    href: "https://drive.google.com/drive/folders/1UC8sZBUE9MftISboLMY2Loe6d9yqikKE",
+    previews: [
+      "/assets/NCINGA/Intern HR Ad_result.webp",
+      "/assets/NCINGA/Cover_result.webp",
+    ],
+    accent: "from-blue-400/20 via-indigo-500/10 to-transparent",
+  }),
+  driveProject({
     id: "la-maison",
     title: "La Maison",
     type: "Brand Creatives",
-    driveUrl:
-      "https://drive.google.com/drive/folders/1wRKoXXWdwc_B3FTm-oaWePi8CfxwZYRt",
-  },
-  {
+    href: "https://drive.google.com/drive/folders/1wRKoXXWdwc_B3FTm-oaWePi8CfxwZYRt",
+    previews: [
+      "/assets/LaMaision/Mockup 4_result.webp",
+      "/assets/LaMaision/Mockup 2_result.webp",
+    ],
+    accent: "from-stone-300/20 via-neutral-500/10 to-transparent",
+  }),
+  pdfProject({
     id: "dasuna-magazine",
     title: "Dasuna Magazine",
     type: "Editorial Design",
-    driveUrl:
-      "https://drive.google.com/drive/folders/1XgjXv3OWPJIXCAWnsdpNobyUxcuNQxUF",
-  },
-  {
+    href: "/assets/Dasuna/Magazine Final NB Reduced.pdf",
+    accent: "from-sand/25 via-orange-500/10 to-transparent",
+    pdfLabel: "Magazine PDF",
+  }),
+  driveProject({
     id: "agriculture",
     title: "Agriculture",
     type: "Campaign Creatives",
-    driveUrl:
-      "https://drive.google.com/drive/folders/1isDztsTuMeIZDMttiInwZmvXjxjnIyNT",
-  },
-  {
+    href: "https://drive.google.com/drive/folders/1isDztsTuMeIZDMttiInwZmvXjxjnIyNT",
+    previews: [
+      "/assets/Agri/Sri Lanka\u2019s Agri Sector Takes Center Stage!_result.webp",
+    ],
+    accent: "from-lime-300/20 via-green-500/10 to-transparent",
+  }),
+  pdfProject({
     id: "maliban",
     title: "Maliban",
-    type: "Brand Creatives",
-    driveUrl:
-      "https://drive.google.com/drive/folders/1180JbZcnnBjBkfAHnwATGY-Huo6RAPdf",
+    type: "Brand Story",
+    href: "/assets/Maliban/The Story of Maliban (1).pdf",
+    accent: "from-amber-400/20 via-red-500/10 to-transparent",
+    pdfLabel: "Brand Story PDF",
+  }),
+];
+
+export const photographyProjects = [
+  {
+    id: "photography-folder",
+    title: "Photography",
+    type: "Photography Folder",
+    href: "https://drive.google.com/drive/folders/1CJNfqn97aqZBo2k0hlBSm2Spw-u6SIvp",
+    visualType: "folder",
+    actionLabel: "Open Folder",
+    actionHint: "Photography archive",
+    previews: ["/assets/logophotographjy.png"],
+    accent: "from-aqua/20 via-lavender/10 to-transparent",
   },
 ];

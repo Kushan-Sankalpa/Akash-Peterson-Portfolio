@@ -64,7 +64,7 @@ const Contact = () => {
 
       <div className="border-b border-white/10 pb-6">
         <p className="mb-3 text-xs font-medium tracking-[0.4em] text-white/40 uppercase">
-          04 / Contact
+          06 / Contact
         </p>
         <h2 className="text-heading text-white">Let&apos;s Work Together</h2>
         <p className="mt-3 max-w-2xl text-sm leading-6 text-white/55 sm:text-base">

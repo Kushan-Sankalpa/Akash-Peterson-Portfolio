@@ -42,7 +42,7 @@ export default function Testimonial() {
   return (
     <section className="mt-25 items-start c-space md:mt-35">
       <p className="mb-3 text-xs font-medium tracking-[0.4em] text-white/40 uppercase">
-        04 / Collaborations
+        05 / Collaborations
       </p>
       <h2 className="text-heading">Clients & Collaborations</h2>
       <p className="mt-3 max-w-2xl text-sm leading-6 text-white/55 sm:text-base">

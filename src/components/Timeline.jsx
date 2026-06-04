@@ -28,7 +28,7 @@ export const Timeline = ({ data }) => {
     <section className="c-space section-spacing" id="experience" ref={containerRef}>
       <div className="border-b border-white/10 pb-6">
         <p className="mb-3 text-xs font-medium tracking-[0.4em] text-white/40 uppercase">
-          03 / Experience
+          04 / Experience
         </p>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>

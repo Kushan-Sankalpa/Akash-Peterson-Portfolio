@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 /* eslint-disable react/prop-types */
 
-const LoadingCover = ({ isReady, progress }) => {
+const LoadingCover = ({ isReady, progress, onHidden }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [isLeaving, setIsLeaving] = useState(false);
   const displayProgress = Math.min(100, Math.max(0, Math.round(progress)));
@@ -16,9 +16,12 @@ const LoadingCover = ({ isReady, progress }) => {
     if (!isReady) return undefined;
 
     setIsLeaving(true);
-    const timeoutId = window.setTimeout(() => setIsVisible(false), 850);
+    const timeoutId = window.setTimeout(() => {
+      setIsVisible(false);
+      onHidden?.();
+    }, 850);
     return () => window.clearTimeout(timeoutId);
-  }, [isReady]);
+  }, [isReady, onHidden]);
 
   useEffect(() => {
     if (!isVisible) return undefined;

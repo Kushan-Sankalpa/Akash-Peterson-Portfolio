@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import Navbar from "./sections/navbar";
 import Hero from "./sections/Hero";
 import About from "./sections/About";
+import ExpertiseStack from "./sections/ExpertiseStack";
 import Projects from "./sections/Projects";
 import Experiences from "./sections/Experiences";
 import Testimonial from "./sections/Testimonial";
@@ -12,6 +13,7 @@ import LoadingCover from "./components/LoadingCover";
 const App = () => {
   const [sceneProgress, setSceneProgress] = useState(0);
   const [isSceneReady, setIsSceneReady] = useState(false);
+  const [canLoadPortfolioMedia, setCanLoadPortfolioMedia] = useState(false);
 
   const handleSceneProgress = useCallback((progress) => {
     setSceneProgress(Math.min(progress, 94));
@@ -24,7 +26,11 @@ const App = () => {
 
   return (
     <>
-      <LoadingCover progress={sceneProgress} isReady={isSceneReady} />
+      <LoadingCover
+        progress={sceneProgress}
+        isReady={isSceneReady}
+        onHidden={() => setCanLoadPortfolioMedia(true)}
+      />
       <div className="container mx-auto max-w-7xl">
         <Navbar />
         <Hero
@@ -32,7 +38,8 @@ const App = () => {
           onSceneReady={handleSceneReady}
         />
         <About />
-        <Projects />
+        <ExpertiseStack />
+        <Projects canLoadMedia={canLoadPortfolioMedia} />
         <Experiences />
         <Testimonial />
         <Contact />
