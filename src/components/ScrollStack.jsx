@@ -24,9 +24,14 @@ const ScrollStack = ({
   baseScale = 0.85,
   rotationAmount = 0,
   blurAmount = 0,
+  nextSectionId,
+  previousSectionId,
+  onUserScroll,
   onStackComplete,
 }) => {
   const scrollerRef = useRef(null);
+  const touchStartYRef = useRef(null);
+  const handoffLockRef = useRef(false);
   const stackCompletedRef = useRef(false);
   const animationFrameRef = useRef(null);
   const lenisRef = useRef(null);
@@ -56,6 +61,65 @@ const ScrollStack = ({
       containerHeight: scroller.clientHeight,
     };
   }, []);
+
+  const scrollToSection = useCallback((sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+
+    handoffLockRef.current = true;
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.setTimeout(() => {
+      handoffLockRef.current = false;
+    }, 800);
+  }, []);
+
+  const handoffScrollAtBounds = useCallback(
+    (deltaY, event) => {
+      const scroller = scrollerRef.current;
+      if (!scroller || handoffLockRef.current || Math.abs(deltaY) < 4) return;
+
+      const maxScrollTop = scroller.scrollHeight - scroller.clientHeight;
+      const isAtTop = scroller.scrollTop <= 2;
+      const isAtBottom = scroller.scrollTop >= maxScrollTop - 2;
+
+      if (deltaY > 0 && isAtBottom && nextSectionId) {
+        event?.preventDefault?.();
+        scrollToSection(nextSectionId);
+      }
+
+      if (deltaY < 0 && isAtTop && previousSectionId) {
+        event?.preventDefault?.();
+        scrollToSection(previousSectionId);
+      }
+    },
+    [nextSectionId, previousSectionId, scrollToSection],
+  );
+
+  const handleWheel = useCallback(
+    (event) => {
+      onUserScroll?.();
+      handoffScrollAtBounds(event.deltaY, event);
+    },
+    [handoffScrollAtBounds, onUserScroll],
+  );
+
+  const handleTouchStart = useCallback(
+    (event) => {
+      onUserScroll?.();
+      touchStartYRef.current = event.touches[0].clientY;
+    },
+    [onUserScroll],
+  );
+
+  const handleTouchMove = useCallback(
+    (event) => {
+      if (touchStartYRef.current === null) return;
+
+      const deltaY = touchStartYRef.current - event.touches[0].clientY;
+      handoffScrollAtBounds(deltaY, event);
+    },
+    [handoffScrollAtBounds],
+  );
 
   const updateCardTransforms = useCallback(() => {
     const scroller = scrollerRef.current;
@@ -218,6 +282,8 @@ const ScrollStack = ({
         cancelAnimationFrame(animationFrameRef.current);
       }
       lenisRef.current?.destroy();
+      touchStartYRef.current = null;
+      handoffLockRef.current = false;
       stackCompletedRef.current = false;
       cardsRef.current = [];
       transformsCache.clear();
@@ -226,7 +292,13 @@ const ScrollStack = ({
   }, [itemDistance, updateCardTransforms]);
 
   return (
-    <div className={`scroll-stack-scroller ${className}`.trim()} ref={scrollerRef}>
+    <div
+      className={`scroll-stack-scroller ${className}`.trim()}
+      ref={scrollerRef}
+      onWheel={handleWheel}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+    >
       <div className="scroll-stack-inner">
         {children}
         <div className="scroll-stack-end" />

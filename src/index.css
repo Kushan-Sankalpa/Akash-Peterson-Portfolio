@@ -176,12 +176,16 @@ body {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   will-change: scroll-position;
-  scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
-  scrollbar-width: thin;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scroll-stack-scroller::-webkit-scrollbar {
+  display: none;
 }
 
 .scroll-stack-inner {
-  padding: 18vh clamp(0.25rem, 6vw, 5rem) clamp(16rem, 36vh, 22rem);
+  padding: 18vh clamp(0.25rem, 6vw, 5rem) clamp(10rem, 24vh, 14rem);
   min-height: 100vh;
 }
 
@@ -221,14 +225,28 @@ body {
 .expertise-stack-card {
   overflow: hidden;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 45%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.01) 45%),
     var(--stack-card-surface);
   border: 1px solid rgba(255, 255, 255, 0.16);
 }
 
+.expertise-scroll-hint {
+  animation: expertise-scroll-hint 1.15s ease-in-out infinite;
+}
+
+@keyframes expertise-scroll-hint {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 10px);
+  }
+}
+
 @media (max-width: 640px) {
   .scroll-stack-inner {
-    padding: 13vh 0.75rem 18rem;
+    padding: 13vh 0.75rem 11rem;
   }
 
   .scroll-stack-card {
