@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react";
-import Navbar from "./sections/navbar";
+import Navbar from "./sections/Navbar";
 import Hero from "./sections/Hero";
 import About from "./sections/About";
-import ExpertiseStack from "./sections/ExpertiseStack";
+// import ExpertiseStack from "./sections/ExpertiseStack";
 import Projects from "./sections/Projects";
 import Experiences from "./sections/Experiences";
 import Testimonial from "./sections/Testimonial";
@@ -38,7 +38,7 @@ const App = () => {
           onSceneReady={handleSceneReady}
         />
         <About />
-        <ExpertiseStack />
+        {/* <ExpertiseStack /> */}
         <Projects canLoadMedia={canLoadPortfolioMedia} />
         <Experiences />
         <Testimonial />

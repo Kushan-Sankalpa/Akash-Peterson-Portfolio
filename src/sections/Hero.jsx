@@ -22,7 +22,10 @@ const Hero = ({ onSceneProgress, onSceneReady }) => {
   }, []);
 
   return (
-    <section className="flex min-h-screen items-start justify-center overflow-hidden c-space md:justify-start">
+    <section
+      className="flex min-h-screen scroll-mt-24 items-start justify-center overflow-hidden c-space md:justify-start"
+      id="home"
+    >
       <HeroText />
       <ParallaxBackground />
       <figure

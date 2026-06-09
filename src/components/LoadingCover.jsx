@@ -53,12 +53,16 @@ const LoadingCover = ({ isReady, progress, onHidden }) => {
           Visual Portfolio
         </p>
 
-        <div className="relative mt-10 flex h-40 w-40 items-center justify-center sm:h-48 sm:w-48">
+        <div className="relative mt-10 flex h-44 w-44 items-center justify-center sm:h-52 sm:w-52">
           <div className="loading-orbit absolute inset-0 rounded-full border border-lavender/45" />
           <div className="loading-orbit loading-orbit--reverse absolute inset-4 rounded-full border border-dashed border-white/25" />
-          <div className="loading-pulse absolute inset-9 rounded-full bg-lavender/15 blur-xl" />
-          <div className="flex h-20 w-20 items-center justify-center rounded-full border border-white/15 bg-white/[0.045] text-2xl font-semibold tracking-[0.12em] text-white shadow-[0_0_45px_rgba(122,87,219,0.35)] sm:h-24 sm:w-24 sm:text-3xl">
-            AP
+          <div className="loading-pulse absolute inset-10 rounded-full bg-lavender/15 blur-xl" />
+          <div className="flex h-28 w-28 items-center justify-center overflow-hidden rounded-full border border-white/15 bg-primary/80 p-3 shadow-[0_0_45px_rgba(122,87,219,0.35)] sm:h-32 sm:w-32 sm:p-4">
+            <img
+              src="/assets/ashiyalogo1.png"
+              alt="Akash Peterson"
+              className="h-full w-full object-contain"
+            />
           </div>
         </div>
 

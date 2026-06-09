@@ -16,7 +16,7 @@ const About = () => {
   ];
 
   return (
-    <section className="c-space section-spacing" id="about">
+    <section className="c-space section-spacing scroll-mt-24" id="about">
       <div className="mb-10 flex items-end justify-between border-b border-white/10 pb-5 sm:mb-16 sm:pb-6">
         <div>
           <p className="mb-3 text-xs font-medium tracking-[0.4em] text-white/40 uppercase">

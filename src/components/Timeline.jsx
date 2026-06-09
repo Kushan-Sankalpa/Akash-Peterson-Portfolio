@@ -25,7 +25,11 @@ export const Timeline = ({ data }) => {
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   return (
-    <section className="c-space section-spacing" id="experience" ref={containerRef}>
+    <section
+      className="c-space section-spacing scroll-mt-24"
+      id="experience"
+      ref={containerRef}
+    >
       <div className="border-b border-white/10 pb-6">
         <p className="mb-3 text-xs font-medium tracking-[0.4em] text-white/40 uppercase">
           04 / Experience

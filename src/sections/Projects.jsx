@@ -12,6 +12,8 @@ const categories = [
   { id: "photography", label: "Photography" },
 ];
 
+const FEATURED_PROJECT_COUNT = 9;
+
 const getInitials = (title) =>
   title
     .split(" ")
@@ -117,14 +119,13 @@ const GalleryVisual = ({ project, canLoadMedia, priority }) => {
   const preview = project.previews[0];
 
   return (
-    <div className="h-full p-3">
+    <div className="h-full">
       {preview ? (
-        <div className="h-full overflow-hidden rounded-2xl border border-black/5 bg-white shadow-[0_18px_45px_rgba(3,4,18,0.08)]">
+        <div className="h-full overflow-hidden bg-white/[0.03]">
           <DeferredImage
             src={preview}
             alt={`${project.title} preview`}
             canLoad={canLoadMedia}
-            fit="contain"
             priority={priority}
           />
         </div>
@@ -168,46 +169,19 @@ const PdfVisual = ({ project }) => (
   </div>
 );
 
-const FolderVisual = ({ project, canLoadMedia }) => (
-  <div className="relative h-full overflow-hidden rounded-[1.6rem] p-3">
-    <div
-      className={`absolute inset-0 bg-gradient-to-br ${
-        project.accent || "from-aqua/15 via-lavender/10 to-transparent"
-      }`}
-    />
-    <div className="relative grid h-full grid-cols-[1.2fr_0.8fr] gap-2">
-      <div className="overflow-hidden rounded-2xl border border-black/5 bg-white shadow-[0_18px_45px_rgba(3,4,18,0.08)]">
-        <DeferredImage
-          src={project.previews[0]}
-          alt={`${project.title} folder cover`}
-          canLoad={canLoadMedia}
-          fit="contain"
-          priority
-          className="p-4 sm:p-5"
-        />
-      </div>
-      <div className="flex flex-col justify-between rounded-2xl border border-white/10 bg-primary/75 p-4">
-        <p className="text-[0.65rem] tracking-[0.2em] text-white/45 uppercase">
-          Archive
-        </p>
-        <div>
-          <h3 className="text-xl font-semibold text-white">Photography Folder</h3>
-          <p className="mt-3 text-sm leading-6 text-white/65">
-            Open the full Google Drive collection for photography work.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
 const ProjectVisual = ({ project, canLoadMedia, priority }) => {
   if (project.visualType === "pdf") {
     return <PdfVisual project={project} />;
   }
 
   if (project.visualType === "folder") {
-    return <FolderVisual project={project} canLoadMedia={canLoadMedia} />;
+    return (
+      <GalleryVisual
+        project={project}
+        canLoadMedia={canLoadMedia}
+        priority={priority}
+      />
+    );
   }
 
   return (
@@ -269,13 +243,14 @@ const ProjectCard = ({ project, index, canLoadMedia }) => (
 const Projects = ({ canLoadMedia = false }) => {
   const [category, setCategory] = useState("graphic-designs");
   const [showAll, setShowAll] = useState(false);
+  const allGraphicProjects = [...featuredProjects, ...additionalProjects];
 
   const visibleProjects = showAll
-    ? [...featuredProjects, ...additionalProjects]
-    : featuredProjects;
+    ? allGraphicProjects
+    : allGraphicProjects.slice(0, FEATURED_PROJECT_COUNT);
 
   return (
-    <section className="relative c-space section-spacing" id="work">
+    <section className="relative c-space section-spacing scroll-mt-24" id="work">
       <div className="border-b border-white/10 pb-6">
         <p className="mb-3 text-xs font-medium tracking-[0.4em] text-white/40 uppercase">
           03 / Selected Work
@@ -325,18 +300,20 @@ const Projects = ({ canLoadMedia = false }) => {
             ))}
           </div>
 
-          <div className="mt-8 flex justify-center">
-            <button
-              type="button"
-              onClick={() => setShowAll((current) => !current)}
-              className="rounded-full border border-white/20 bg-white/[0.04] px-6 py-3 text-xs font-medium tracking-[0.2em] text-white uppercase transition hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/[0.09]"
-            >
-              {showAll ? "Show featured projects" : "View all projects"}
-            </button>
-          </div>
+          {allGraphicProjects.length > FEATURED_PROJECT_COUNT && (
+            <div className="mt-8 flex justify-center">
+              <button
+                type="button"
+                onClick={() => setShowAll((current) => !current)}
+                className="rounded-full border border-white/20 bg-white/[0.04] px-6 py-3 text-xs font-medium tracking-[0.2em] text-white uppercase transition hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/[0.09]"
+              >
+                {showAll ? "Show featured projects" : "View all projects"}
+              </button>
+            </div>
+          )}
         </>
       ) : (
-        <div className="mt-8 grid max-w-3xl grid-cols-1 gap-5">
+        <div className="mt-8 grid grid-cols-1 gap-5 min-[560px]:grid-cols-2 xl:grid-cols-3">
           {photographyProjects.map((project, index) => (
             <ProjectCard
               key={project.id}
